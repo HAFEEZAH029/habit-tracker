@@ -1,10 +1,10 @@
-import React from 'react'
+import SplashScreenClient from "./components/shared/SplashScreenClient"
 
 const page = () => {
   return (
-    <div>
-      Welcome to your Habit Tracker!
-    </div>
+    <>
+      <SplashScreenClient />
+    </>
   )
 }
 

@@ -10,10 +10,29 @@
   --foreground: #0F172A;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer utilities {
+  @keyframes slide {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(300%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-slide {
+    animation: slide 2s ease-in-out infinite;
+  }
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 html,
