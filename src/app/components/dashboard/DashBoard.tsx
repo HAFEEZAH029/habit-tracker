@@ -1,6 +1,6 @@
 import { Habit } from "../../types/habit";
 import HabitList from "../habits/HabitList";
-import { calculateCurrentStreak } from "@/app/lib/streaks";
+import { calculateCurrentStreak } from "../../lib/streaks";
 import { FaPlus } from "react-icons/fa6";
 
 

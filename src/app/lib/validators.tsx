@@ -13,7 +13,7 @@ export function validateHabitName(name: string): {
     };
   }
 
-  if (value.length < 5) {
+  if (value.length < 3) {
     return {
       valid: false,
       value,

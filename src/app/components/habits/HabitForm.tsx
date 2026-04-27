@@ -110,7 +110,6 @@ export default function HabitForm({isOpen, onClose, onSuccess, initialData,}: Pr
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Read for 30 minutes"
                 data-testid="habit-name-input"
-                required
                 className={`w-full rounded-xl px-4 py-3 bg-slate-100 border ${
                   errors.name ? "border-red-500" : "border-slate-200"
                 }`}

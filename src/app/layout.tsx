@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ServiceWorker from "./components/shared/ServiceWorker";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -18,11 +19,8 @@ export const metadata: Metadata = {
   manifest: "/manifest.json"
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
+
   return (
     <html
       lang="en"
@@ -30,18 +28,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-slate-950 text-white antialiased">
         {children}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function () {
-                  navigator.serviceWorker.register('/sw.js');
-                });
-              }
-            `,
-          }}
-        />
-
+        <ServiceWorker />
       </body>
     </html>
   );
