@@ -1,9 +1,9 @@
-import DashboardClient from "../components/dashboard/DashboardClient"
+import ProtectedRoute from "../components/shared/ProtectedRoute"
 
 const page = () => {
   return (
     <>
-      <DashboardClient />
+      <ProtectedRoute />
     </>
   )
 }
