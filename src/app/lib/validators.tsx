@@ -13,11 +13,19 @@ export function validateHabitName(name: string): {
     };
   }
 
+  if (value.length < 5) {
+    return {
+      valid: false,
+      value,
+      error: "Please be detailed with habit name",
+    };
+  }
+
   if (value.length > 60) {
     return {
       valid: false,
       value,
-      error: "Habit name must be 60 characters or fewer",
+      error: "Habit name must be 60 characters or fewer"
     };
   }
 

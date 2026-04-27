@@ -1,10 +1,10 @@
-import React from 'react'
+import DashboardClient from "../components/dashboard/DashboardClient"
 
 const page = () => {
   return (
-    <div>
-      This is your dashboard
-    </div>
+    <>
+      <DashboardClient />
+    </>
   )
 }
 
