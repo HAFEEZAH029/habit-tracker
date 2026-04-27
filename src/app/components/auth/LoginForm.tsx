@@ -14,6 +14,22 @@ export default function LoginForm() {
     const email = String(formData.get("email") || "").trim();
     const password = String(formData.get("password") || "");
 
+    if (!email || !password) {
+      setError("Please enter both email and password");
+      return;
+    }
+
+    if (password.trim().length < 8) {
+      setError("Password must be at least 8 characters");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
     const result = loginUser(email, password);
 
     if (!result.success) {
