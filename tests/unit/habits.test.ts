@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { toggleHabitCompletion } from "../../src/app/lib/habits";
-import { Habit } from "../../src/app/types/habit";
+import { toggleHabitCompletion } from "../../src/lib/habits";
+import { Habit } from "../../src/types/habit";
 
 describe('toggleHabitCompletion', () => {
   const baseHabit: Habit = {

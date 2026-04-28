@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ServiceWorker from "./components/shared/ServiceWorker";
+import ServiceWorker from "@/components/shared/ServiceWorker";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 

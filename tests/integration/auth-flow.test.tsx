@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach} from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import SignupForm from "../../src/app/components/auth/SignupForm";
-import LoginForm from "../../src/app/components/auth/LoginForm";
+import SignupForm from "../../src/components/auth/SignupForm";
+import LoginForm from "../../src/components/auth/LoginForm";
 
 // mock router
 vi.mock("next/navigation", () => ({

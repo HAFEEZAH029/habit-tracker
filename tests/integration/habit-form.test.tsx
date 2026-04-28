@@ -1,12 +1,14 @@
 import { describe, it, expect, beforeEach} from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import ProtectedRoute from "../../src/app/components/shared/ProtectedRoute";
+import ProtectedRoute from "../../src/components/shared/ProtectedRoute";
+
+const routerMock = vi.hoisted(() => ({
+  push: vi.fn(),
+  replace: vi.fn(),
+}));
 
 vi.mock("next/navigation", () => ({
-  useRouter: () => ({
-    push: vi.fn(),
-    replace: vi.fn(),
-  }),
+  useRouter: () => routerMock,
 }));
 
 describe('habit form', () => {

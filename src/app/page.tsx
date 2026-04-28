@@ -1,4 +1,4 @@
-import SplashScreenClient from "./components/shared/SplashScreenClient"
+import SplashScreenClient from "@/components/shared/SplashScreenClient"
 
 const page = () => {
   return (
@@ -9,4 +9,3 @@ const page = () => {
 }
 
 export default page
-

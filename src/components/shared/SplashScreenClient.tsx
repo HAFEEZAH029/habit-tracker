@@ -1,6 +1,6 @@
 'use client';
 
-import SplashScreen from "../../components/shared/SplashScreen";
+import SplashScreen from "./SplashScreen";
 import { getSession } from "../../lib/auth";
 import { SPLASH_DELAY } from "../../lib/constants";
 import { useEffect } from "react";
