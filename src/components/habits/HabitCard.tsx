@@ -105,7 +105,8 @@ export default function HabitCard({ habit, onEdit, onChange }: Props) {
             onClick={() => onEdit(habit)}
             data-testid={`habit-edit-${slug}`}
             aria-label={`Edit ${habit.name}`}
-            className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl border border-slate-200 flex items-center justify-center text-slate-500 hover:text-(--tertiary) hover:border-(--tertiary) transition"
+            className="w-7 h-7 sm:w-9 sm:h-9 rounded-xl border border-slate-200 flex items-center justify-center text-slate-500 hover:text-(--tertiary) hover:border-(--tertiary) transition disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:text-slate-500 disabled:hover:border-slate-200"
+            disabled={completedToday}
           >
             <IoPencilOutline className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>

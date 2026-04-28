@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Habit } from "../../types/habit";
 import { validateHabitName } from "../../lib/validators";
 import { createHabit, updateHabit } from "../../lib/habits";
@@ -15,20 +15,10 @@ type Props = {
 
 export default function HabitForm({isOpen, onClose, onSuccess, initialData,}: Props) {
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState(initialData?.name ?? "");
+  const [description, setDescription] = useState(initialData?.description ?? "");
   const [errors, setErrors] = useState<{ name?: string; description?: string; }>({});
   const isEditMode = Boolean(initialData);
-
-  useEffect(() => {
-    if (initialData) {
-      setName(initialData.name);
-      setDescription(initialData.description);
-    } else {
-      setName("");
-      setDescription("");
-    }
-  }, [initialData, isOpen]);
 
   useEffect(() => {
   function handleEsc(e: KeyboardEvent) {

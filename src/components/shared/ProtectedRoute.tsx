@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getSession, logoutUser } from "../../lib/auth";
 import { getHabitsByUser } from "../../lib/habits";
@@ -20,7 +20,7 @@ export default function ProtectedRoute() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHabit, setSelectedHabit] = useState<Habit | null>(null);
 
-  function loadHabits() {
+  const loadHabits = useCallback(() => {
     const session = getSession();
 
     if (!session) {
@@ -31,11 +31,11 @@ export default function ProtectedRoute() {
     const userHabits = getHabitsByUser(session.userId);
     setHabits(userHabits);
     setLoading(false);
-  }
+  }, [router]);
 
   useEffect(() => {
     loadHabits();
-  }, []);
+  }, [loadHabits]);
 
   function handleLogout() {
     logoutUser();
@@ -87,13 +87,15 @@ export default function ProtectedRoute() {
         )}
       </div>
 
-      <HabitForm
-        key={selectedHabit?.id || "create"}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSuccess={loadHabits}
-        initialData={selectedHabit}
-      />
+      {isModalOpen && (
+        <HabitForm
+          key={selectedHabit?.id || "create"}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onSuccess={loadHabits}
+          initialData={selectedHabit}
+        />
+      )}
     </main>
   );
 }

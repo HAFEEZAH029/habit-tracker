@@ -14,7 +14,7 @@ export default function HabitList({ habits, onEdit, onChange }: Props) {
     <section className="w-full">
       <div className="flex items-center justify-between mb-4 px-1">
         <h2 className="text-sm font-semibold text-slate-700">Your habits</h2>
-        <p className="text-xs text-slate-500">{habits.length} active</p>
+        <p className="text-xs text-slate-500">{habits.length} in total</p>
       </div>
 
       <div className="space-y-3">

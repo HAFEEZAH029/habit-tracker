@@ -67,7 +67,6 @@ export default function LoginForm() {
             id="email"
             name="email"
             type="email"
-            required
             placeholder="name@example.com"
             data-testid="auth-login-email"
             className="w-full rounded-xl border border-slate-300 px-4 py-3 bg-white"
@@ -86,7 +85,6 @@ export default function LoginForm() {
             id="password"
             name="password"
             type="password"
-            required
             data-testid="auth-login-password"
             className="w-full rounded-xl border border-slate-300 px-4 py-3 bg-white"
           />
@@ -104,7 +102,7 @@ export default function LoginForm() {
         data-testid="auth-login-submit"
         className="mt-6 w-full rounded-xl px-4 py-3 font-semibold text-white bg-(--primary) hover:opacity-95"
       >
-        Sign In
+        Log In
       </button>
 
       <div className="mt-5 text-center text-sm text-slate-500">

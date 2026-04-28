@@ -19,6 +19,17 @@ export default function SignupForm() {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    if (password.trim().length < 8) {
+      setError("Password must be at least 8 characters");
+      return;
+    }
+
     const result = signupUser(email, password);
 
     if (!result.success) {
@@ -62,7 +73,6 @@ export default function SignupForm() {
             <input
               name="email"
               type="email"
-              required
               placeholder="alex@routines.app"
               data-testid="auth-signup-email"
               className="w-full rounded-xl border border-slate-200 px-4 py-3 bg-slate-100"
@@ -78,7 +88,6 @@ export default function SignupForm() {
             <input
               name="password"
               type="password"
-              required
               data-testid="auth-signup-password"
               className="w-full rounded-xl border border-slate-200 px-4 py-3 bg-slate-100"
             />

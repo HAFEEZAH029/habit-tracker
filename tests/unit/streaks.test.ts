@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { calculateCurrentStreak } from "../../src/app/lib/streaks";
+import { calculateCurrentStreak } from "../../src/lib/streaks";
 
 describe('calculateCurrentStreak', () => {
   const today = "2026-04-27";
