@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { toggleHabitCompletion } from "../../src/lib/habits";
+import { describe, it, expect, beforeEach } from "vitest";
+import { toggleHabitCompletion, createHabit, updateHabit, deleteHabit, getHabitsByUser } from "../../src/lib/habits";
 import { Habit } from "../../src/types/habit";
 
 describe('toggleHabitCompletion', () => {
@@ -39,5 +39,102 @@ describe('toggleHabitCompletion', () => {
     const updated = toggleHabitCompletion(habit, today);
 
     expect(new Set(updated.completions).size).toBe(updated.completions.length);
+  });
+});
+
+describe('habits utilities', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it('creates a habit and stores it in localStorage', () => {
+    const habit = createHabit("1", "Read", "");
+
+    const stored = JSON.parse(
+      localStorage.getItem("habit-tracker-habits") || "[]"
+    );
+
+    expect(stored.length).toBe(1);
+    expect(stored[0].name).toBe("Read");
+    expect(habit.userId).toBe("1");
+  });
+
+  it('retrieves habits for a specific user', () => {
+    const habits: Habit[] = [
+      {
+        id: "1",
+        userId: "1",
+        name: "A",
+        description: "",
+        frequency: "daily",
+        createdAt: "date",
+        completions: [],
+      },
+      {
+        id: "2",
+        userId: "2",
+        name: "B",
+        description: "",
+        frequency: "daily",
+        createdAt: "date",
+        completions: [],
+      },
+    ];
+
+    localStorage.setItem("habit-tracker-habits", JSON.stringify(habits));
+
+    const result = getHabitsByUser("1");
+
+    expect(result.length).toBe(1);
+    expect(result[0].name).toBe("A");
+  });
+
+  it('updates an existing habit', () => {
+    const habit: Habit = {
+      id: "1",
+      userId: "1",
+      name: "Old",
+      description: "",
+      frequency: "daily", // 👈 literal type
+      createdAt: "date",
+      completions: [],
+    };
+
+    localStorage.setItem("habit-tracker-habits", JSON.stringify([habit]));
+
+    const updated: Habit = {
+      ...habit,
+      name: "New",
+    };
+
+    updateHabit(updated);
+
+    const stored = JSON.parse(
+      localStorage.getItem("habit-tracker-habits") || "[]"
+    );
+
+    expect(stored[0].name).toBe("New");
+  });
+
+  it('deletes a habit from localStorage', () => {
+    const habit: Habit = {
+      id: "1",
+      userId: "1",
+      name: "Delete",
+      description: "",
+      frequency: "daily",
+      createdAt: "date",
+      completions: [],
+    };
+
+    localStorage.setItem("habit-tracker-habits", JSON.stringify([habit]));
+
+    deleteHabit("1");
+
+    const stored = JSON.parse(
+      localStorage.getItem("habit-tracker-habits") || "[]"
+    );
+
+    expect(stored.length).toBe(0);
   });
 });
