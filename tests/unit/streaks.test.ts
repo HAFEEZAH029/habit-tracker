@@ -9,8 +9,12 @@ describe('calculateCurrentStreak', () => {
     expect(calculateCurrentStreak([], today)).toBe(0);
   });
 
-  it('returns 0 when today is not completed', () => {
-    expect(calculateCurrentStreak(["2026-04-26"], today)).toBe(0);
+  it('keeps yesterday streak visible when today is not completed yet', () => {
+    expect(calculateCurrentStreak(["2026-04-26"], today)).toBe(1);
+  });
+
+  it('returns 0 when neither today nor yesterday is completed', () => {
+    expect(calculateCurrentStreak(["2026-04-25"], today)).toBe(0);
   });
 
   it('returns the correct streak for consecutive completed days', () => {
