@@ -14,11 +14,7 @@ export function getHabitsByUser(userId: string): Habit[] {
   return getHabits().filter((habit) => habit.userId === userId);
 }
 
-export function createHabit(
-  userId: string,
-  name: string,
-  description: string
-): Habit {
+export function createHabit(userId: string, name: string, description: string): Habit {
   const habits = getHabits();
 
   const newHabit: Habit = {
@@ -64,4 +60,13 @@ export function toggleHabitCompletion(
     ...habit,
     completions: [...new Set(completions)],
   };
+}
+
+export function toggleHabitCompletionAndSave(
+  habit: Habit,
+  date: string
+): Habit {
+  const updatedHabit = toggleHabitCompletion(habit, date);
+  updateHabit(updatedHabit);
+  return updatedHabit;
 }
