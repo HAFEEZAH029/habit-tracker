@@ -12,10 +12,14 @@ export function calculateCurrentStreak(
 
   const uniqueDates = [...new Set(completions)].sort();
 
-  if (!uniqueDates.includes(currentDate)) return 0;
+  const streakStartDate = uniqueDates.includes(currentDate)
+    ? currentDate
+    : getPreviousDate(currentDate);
+
+  if (!uniqueDates.includes(streakStartDate)) return 0;
 
   let streak = 1;
-  let checkDate = currentDate;
+  let checkDate = streakStartDate;
 
   while (true) {
     checkDate = getPreviousDate(checkDate);
